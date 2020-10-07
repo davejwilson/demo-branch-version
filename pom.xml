@@ -107,10 +107,10 @@
             </goals>
             <configuration>
               <source>
-                if ( "master".equals('${git.branch}') ) {
+                if ( "master|main".indexOf('${git.branch}') != -1 || '${git.branch}'.startsWith("hotfix")) { // hotfix/jan
                   project.artifact.version = '${git.commit.time}.${git.commit.id.abbrev}';
                 } else {
-                  project.artifact.version = '${git.branch}-${git.commit.time}.${git.commit.id.abbrev}';
+                  project.artifact.version = '${git.branch}-SNAPSHOT';
                 }
                 println '${git.branch}'
               </source>
